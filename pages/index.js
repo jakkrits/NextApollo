@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import App from '../components/App';
 import Header from '../components/Header';
 import Submit from '../components/Submit';
@@ -8,6 +9,9 @@ import pagePropTypes from '../lib/pagePropTypes';
 
 const AppPage = props => (
   <App>
+    <Helmet>
+      <title>ChewLounge Timesheet</title>
+    </Helmet>
     <Header pathname={props.url.pathname} />
     <Submit />
     <PostListContainer />
