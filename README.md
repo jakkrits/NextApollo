@@ -1,8 +1,7 @@
-# Apollo Example
+# PPSmart Base Boilerplate
 
-[![graphql-up](http://static.graph.cool/images/graphql-up.svg)](https://www.graph.cool/graphql-up/new?source=https://raw.githubusercontent.com/nikolasburk/ConferencePlanner/master/conference_planner.schema)
-
-Server-side rendered & authed requests using auth0 & graph.cool. Project based on the [with-apollo](https://github.com/zeit/next.js/tree/master/examples/with-apollo) example.
+## Referenced from
+[Katt](https://github.com/KATT/next-with-apollo-airbnb-auth0-graphcool)
 
 ## Stuff used
 
@@ -14,10 +13,6 @@ Server-side rendered & authed requests using auth0 & graph.cool. Project based o
 * [env-cmd](https://github.com/toddbluhm/env-cmd) for serving env vars
 * [redis](https://redis.io) using [redislabs](https://redislabs.com) for session storage
 * [plop](https://github.com/amwmedia/plop) for scaffolding
-
-## Demo
-
-https://next-with-apollo-airbnb-auth0-graphcool.now.sh/
 
 ## How to use
 
