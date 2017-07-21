@@ -1,6 +1,7 @@
 import { gql, graphql } from 'react-apollo';
 import Link from 'next/link';
-import { PropTypes, Component } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import Auth0Lock from 'auth0-lock';
 
 import { setAuthToken } from '../lib/authTokens';

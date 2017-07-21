@@ -1,5 +1,4 @@
-import { PropTypes } from 'react';
-
+import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 
 function Submit({ createPost }) {
