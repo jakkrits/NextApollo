@@ -9,30 +9,30 @@
     "plop": "plop --plopfile internals/generators/index.js"
   },
   "dependencies": {
-    "auth0-lock": "^10.13.0",
-    "body-parser": "^1.17.1",
-    "connect-redis": "^3.2.0",
-    "env-cmd": "^5.0.0",
-    "express": "^4.15.2",
-    "express-session": "^1.15.1",
-    "graphql": "^0.9.1",
-    "next": "^2.0.0-beta",
+    "auth0-lock": "^10.19.0",
+    "body-parser": "^1.17.2",
+    "connect-redis": "^3.3.0",
+    "env-cmd": "^5.1.0",
+    "express": "^4.15.3",
+    "express-session": "^1.15.4",
+    "graphql": "^0.10.5",
+    "next": "^2.4.7",
     "path-match": "^1.2.4",
-    "react": "^15.4.2",
-    "react-apollo": "^1.0.0-rc.2",
-    "redux": "^3.6.0",
-    "subscriptions-transport-ws": "^0.5.5-alpha.0"
+    "react": "^15.6.1",
+    "react-apollo": "^1.4.8",
+    "redux": "^3.7.2",
+    "subscriptions-transport-ws": "^0.8.1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "eslint": "^3.17.1",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-loader": "^1.6.3",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.0",
-    "plop": "^1.7.4"
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.1.0",
+    "plop": "^1.8.0"
   }
 }
