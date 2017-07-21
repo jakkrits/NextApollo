@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 const App = ({ children }) => (
   <main>
     {children}
+    {/*
     <style jsx global>{`
       * {
         font-family: Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
@@ -38,6 +39,7 @@ const App = ({ children }) => (
         outline: none;
       }
     `}</style>
+    */}
   </main>
 );
 

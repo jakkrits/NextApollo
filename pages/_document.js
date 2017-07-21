@@ -36,9 +36,12 @@ export default class MyDocument extends Document {
     return (
       <html lang="en" {...this.helmetHtmlAttrComponents()}>
         <Head>
+          <meta charSet="utf-8" />
           <meta name="robots" content="index,follow" />
           <meta httpEquiv="expires" content="10800" />
           <meta name="generator" content="PPSmart NextJS" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.min.css" />
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
           {this.helmetHeadComponents()}
           {styleTags}
         </Head>
