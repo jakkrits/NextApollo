@@ -31,6 +31,7 @@ function Submit({ createPost }) {
       <input placeholder="title" name="title" />
       <input placeholder="url" name="url" />
       <button type="submit">Submit</button>
+      {/*
       <style jsx>{`
         form {
           border-bottom: 1px solid #ececec;
@@ -45,6 +46,7 @@ function Submit({ createPost }) {
           margin-bottom: 10px;
         }
       `}</style>
+      */}
     </form>
   );
 }

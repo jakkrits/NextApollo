@@ -5,6 +5,7 @@ function PostUpvoter({ upvote, votes, id }) {
   return (
     <button onClick={() => upvote(id, votes + 1)}>
       {votes}
+      {/*
       <style jsx>{`
         button {
           background-color: transparent;
@@ -25,6 +26,7 @@ function PostUpvoter({ upvote, votes, id }) {
           width: 0;
         }
       `}</style>
+      */}
     </button>
   );
 }

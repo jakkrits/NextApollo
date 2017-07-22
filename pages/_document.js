@@ -40,8 +40,16 @@ export default class MyDocument extends Document {
           <meta name="robots" content="index,follow" />
           <meta httpEquiv="expires" content="10800" />
           <meta name="generator" content="PPSmart NextJS" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.min.css" />
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png" />
+          <link rel="manifest" href="/static/favicon/manifest.json" />
+          <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+          <meta name="theme-color" content="#ffffff" />
           {this.helmetHeadComponents()}
           {styleTags}
         </Head>

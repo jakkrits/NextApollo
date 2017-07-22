@@ -75,32 +75,41 @@ class Header extends Component { // eslint-disable-line react/prefer-stateless-f
   render() {
     const { pathname, currentUser } = this.props;
     return (
-      <header>
-        <Link prefetch href="/">
-          <a className={pathname === '/' && 'is-active'}>Home</a>
-        </Link>
+      <header className="nav">
+        <div className="container">
+          <div className="nav-left">
+            <a className="nav-item" href="/">
+              <img src="/static/stopwatch.png" alt="Logo" />
+            </a>
+          </div>
+          <div className="nav-right nav-menu">
+            <Link prefetch href="/">
+              <a className={pathname === '/' && 'nav-item is-active' ? 'nav-item  is-active' : 'nav-item'}>Home</a>
+            </Link>
 
-        <Link prefetch href="/about">
-          <a className={pathname === '/about' && 'is-active'}>About</a>
-        </Link>
+            <Link prefetch href="/about">
+              <a className={pathname === '/about' && 'nav-item is-active' ? 'nav-item  is-active' : 'nav-item'}>About</a>
+            </Link>
 
-        {currentUser ?
-          <span>Loggedin as {currentUser.screenName} - <a href="/logout">Logout</a></span>
-          :
-          <a href="#login" onClick={this.triggerLogin}>Login</a>
-        }
-
+            {currentUser ?
+              <span className="nav-item">Logged-in as {currentUser.screenName} - <a className="nav-item" href="/logout">Logout</a></span>
+              :
+              <a className="nav-item" href="#login" onClick={this.triggerLogin}>Login</a>
+            }
+          </div>
+        </div>
         <style jsx>{`
           header {
             margin-bottom: 25px;
           }
           a {
-            font-size: 14px;
+            font-size: 16px;
             margin-right: 15px;
             text-decoration: none;
           }
           .is-active {
             text-decoration: underline;
+            text-decoration-color: #FD5A5D;
           }
         `}</style>
       </header>

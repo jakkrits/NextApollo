@@ -3,7 +3,7 @@ import { gql, graphql } from 'react-apollo';
 import PostList from './PostList';
 import postListwithSubscription from './postListwithSubscription';
 
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 20;
 
 const allPosts = gql`
   query allPosts($first: Int!, $skip: Int!) {
