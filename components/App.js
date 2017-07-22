@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 const App = ({ children }) => (
   <main>
     {children}
+    <style jsx global>{`
+      article {
+        margin: 0 auto;
+        max-width: 650px;
+      }
+    `}</style>
     {/*
     <style jsx global>{`
       * {
@@ -18,10 +24,6 @@ const App = ({ children }) => (
       p {
         font-size: 14px;
         line-height: 24px;
-      }
-      article {
-        margin: 0 auto;
-        max-width: 650px;
       }
       button {
         align-items: center;

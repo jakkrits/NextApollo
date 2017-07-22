@@ -26,7 +26,6 @@ function PostList({ data, loadMorePosts }) { // eslint-disable-line react/prop-t
         ))}
       </ul>
       {areMorePosts ? <ShowMore {...{ loading, loadMore: loadMorePosts }} /> : ''}
-      {/*
       <style jsx>{`
         section {
           padding-bottom: 20px;
@@ -64,7 +63,6 @@ function PostList({ data, loadMorePosts }) { // eslint-disable-line react/prop-t
           width: 0;
         }
       `}</style>
-      */}
     </section>
   );
 }

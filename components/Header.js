@@ -112,6 +112,7 @@ class Header extends Component { // eslint-disable-line react/prefer-stateless-f
             text-decoration-color: #FD5A5D;
           }
         `}</style>
+        <hr className="navbar-divider" />
       </header>
     );
   }
