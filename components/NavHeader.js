@@ -1,6 +1,12 @@
 import { Component } from 'react';
 
 class NavHeader extends Component { // eslint-disable-line
+  toggleBurger = () => {
+    // document.querySelector('.nav-menu').classList.toggle('is-active');
+    const nav = document.getElementById('navMenuTransparent');
+    nav.classList.toggle('is-active');
+  }
+
   render() {
     return (
       <nav className="navbar is-transparent">
@@ -22,14 +28,19 @@ class NavHeader extends Component { // eslint-disable-line
             </span>
           </a>
 
-          <div className="navbar-burger burger" data-target="navMenuTransparentExample">
+          <div
+            className="navbar-burger burger"
+            data-target="navMenuTransparent"
+            onClick={this.toggleBurger}
+            role="presentation"
+          >
             <span />
             <span />
             <span />
           </div>
         </div>
 
-        <div id="navMenuTransparentExample" className="navbar-menu">
+        <div id="navMenuTransparent" className="navbar-menu">
           <div className="navbar-start">
             <a className="navbar-item " href="http://bulma.io/">
         Home
@@ -193,7 +204,7 @@ class NavHeader extends Component { // eslint-disable-line
             </div>
           </div>
         </div>
-      </nav>
+</nav>
     );
   }
 }
