@@ -1,5 +1,4 @@
 import App from '../components/App';
-import Header from '../components/Header';
 import NavHeader from '../components/NavHeader';
 import withData from '../lib/withData';
 
@@ -8,7 +7,6 @@ import pagePropTypes from '../lib/pagePropTypes';
 const AboutPage = props => (
   <App>
     <NavHeader pathname={props.url.pathname} />
-    <Header pathname={props.url.pathname} />
     <section className="section is-small">
       <article>
         <h1>The Idea Behind This Example</h1>

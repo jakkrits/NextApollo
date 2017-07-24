@@ -1,6 +1,5 @@
 import Helmet from 'react-helmet';
 import App from '../components/App';
-import Header from '../components/Header';
 import NavHeader from '../components/NavHeader';
 import Submit from '../components/Submit';
 import PostListContainer from '../components/PostListContainer';
@@ -14,7 +13,6 @@ const AppPage = props => (
       <title>ChewLounge Timesheet</title>
     </Helmet>
     <NavHeader pathname={props.url.pathname} />
-    <Header pathname={props.url.pathname} />
     <Submit />
     <PostListContainer />
     <Footer />

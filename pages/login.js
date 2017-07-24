@@ -1,10 +1,9 @@
 import { Component } from 'react';
 import withData from '../lib/withData';
-
 import App from '../components/App';
-import Header from '../components/Header';
-
+import NavHeader from '../components/NavHeader';
 import pagePropTypes from '../lib/pagePropTypes';
+import Loading from '../components/Loading';
 
 class LoginPage extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -16,13 +15,8 @@ class LoginPage extends Component { // eslint-disable-line react/prefer-stateles
 
     return (
       <App>
-        <Header pathname={url.pathname} />
-        <article>
-          <h1>Logging in</h1>
-          <p>
-            Logging you in... have patience.
-          </p>
-        </article>
+        <NavHeader pathname={url.pathname} />
+        <Loading />
       </App>
     );
   }

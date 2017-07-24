@@ -27,23 +27,6 @@ function Submit({ createPost }) {
 
   return (
     <div className="field" onSubmit={handleSubmit}>
-      <div className="container">
-        <div className="field">
-          <label className="label">Name</label> { // eslint-disable-line
-          }
-          <div className="control">
-            <input className="input" type="text" placeholder="e.g Alex Smith" />
-          </div>
-        </div>
-
-        <div className="field">
-          <label className="label">Email</label> { // eslint-disable-line
-          }
-          <div className="control">
-            <input className="input" type="email" placeholder="e.g. alexsmith@gmail.com" />
-          </div>
-        </div>
-      </div>
       <h1>Submit</h1>
       <input placeholder="title" name="title" />
       <input placeholder="url" name="url" />
