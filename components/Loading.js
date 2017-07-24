@@ -1,7 +1,7 @@
+import Ripple from '../static/Ripple.svg';
+
 const Loading = () => (
-  <div>
-    Loading...
-  </div>
+  <Ripple />
 );
 
 Loading.propTypes = {};
