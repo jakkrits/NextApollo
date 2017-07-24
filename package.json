@@ -30,6 +30,7 @@
   "license": "ISC",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "babel-plugin-inline-react-svg": "^0.2.0",
     "eslint": "^4.3.0",
     "eslint-config-airbnb": "^15.0.2",
     "eslint-loader": "^1.9.0",
