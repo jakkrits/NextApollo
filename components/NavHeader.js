@@ -1,28 +1,122 @@
+import { gql, graphql } from 'react-apollo';
+import Link from 'next/link';
 import { Component } from 'react';
+import PropTypes from 'prop-types';
+import Auth0Lock from 'auth0-lock';
+import { setAuthToken } from '../lib/authTokens';
 
-class NavHeader extends Component { // eslint-disable-line
+class NavHeader extends Component { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    const lock = new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, {
+      auth: {
+        redirectUrl: `${location.origin}/login?r=${this.props.pathname}`,
+        responseType: 'token',
+      },
+    });
+    this.lock = lock;
+
+    lock.on('authenticated', (result) => {
+      console.log('authenticated', result);
+      lock.getUserInfo(result.accessToken, (error, profile) => {
+        if (error) {
+          console.error('getUserInfo error', error);
+          return;
+        }
+
+        this.signinOrCreateUser(result.idToken, profile);
+      });
+    });
+  }
+
+  triggerLogin = (e) => {
+    e.preventDefault();
+
+    this.lock.show();
+  };
+
+  async signinOrCreateUser(idToken, profile) {
+    const screenName = profile.screen_name || profile.firstName || profile.nickname;
+
+    console.log('signinOrCreateUser', { idToken, profile, name });
+    try {
+      await this.props.createUser({ variables: {
+        idToken,
+        screenName,
+      } });
+    } catch (err) {
+      console.error('createUser fail', err);
+    }
+
+    try {
+      const result = await this.props.signinUser({ variables: {
+        idToken,
+      } });
+
+      setAuthToken(result.data.signinUser.token);
+    } catch (err) {
+      console.log('signinUser fail', err);
+    }
+  }
+
   toggleBurger = () => {
     // document.querySelector('.nav-menu').classList.toggle('is-active');
     const nav = document.getElementById('navMenuTransparent');
     nav.classList.toggle('is-active');
   }
 
+  renderLoggedIn = currentUser => (
+    <div>
+      <div className="field is-grouped">
+        <p className="control">
+          <Link prefetch href="/userProfile">
+            <a className="button is-primary" >
+              <span className="icon">
+                <i className="fa fa-user-circle" />
+              </span>
+              <span>{currentUser.screenName}</span>
+            </a>
+          </Link>
+        </p>
+        <p className="control">
+          <a className="button" href="/logout" >
+            <span className="icon">
+              <i className="fa fa-sign-out" />
+            </span>
+          </a>
+        </p>
+      </div>
+    </div>
+  )
+
+  renderLoggedOut = () => (
+    <div className="field is-grouped">
+      <p className="control">
+        <a className="button is-primary" onClick={this.triggerLogin} tabIndex="0" role="button" >
+          <span className="icon">
+            <i className="fa fa-sign-in" />
+          </span>
+          <span>Login</span>
+        </a>
+      </p>
+    </div>
+  )
+
   render() {
+    const { pathname, currentUser } = this.props; //eslint-disable-line
     return (
       <nav className="navbar is-transparent">
         <div className="navbar-brand">
-          <a className="navbar-item" href="http://bulma.io">
-            <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
-
+          <a className="navbar-item" href="/">
+            <img src="/static/ChewloungeLogo.png" alt="Logo" width="112" height="28" />
           </a>
 
-          <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma">
+          <a className="navbar-item is-hidden-desktop" href="https://facebook.com/chewlounge">
             <span className="icon" style={{ color: '#333' }}>
-              <i className="fa fa-github" />
+              <i className="fa fa-facebook" />
             </span>
           </a>
 
-          <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms">
+          <a className="navbar-item is-hidden-desktop" href="https://twitter.com/chewlounge">
             <span className="icon" style={{ color: '#55acee' }}>
               <i className="fa fa-twitter" />
             </span>
@@ -42,171 +136,112 @@ class NavHeader extends Component { // eslint-disable-line
 
         <div id="navMenuTransparent" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item " href="http://bulma.io/">
+            <Link prefetch href="/">
+              <a className={pathname === '/' && 'nav-item is-active' ? 'nav-item  is-active' : 'nav-item'}>
         Home
-            </a>
+              </a>
+            </Link>
+
+            <Link prefetch href="/about">
+              <a className={pathname === '/about' && 'nav-item is-active' ? 'nav-item  is-active' : 'nav-item'}>About</a>
+            </Link>
+
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link  is-active" href="/documentation/overview/start/">
-          Docs
+              <a className="navbar-link  is-active" href="/">
+          Employees
               </a>
               <div className="navbar-dropdown is-boxed">
                 <a className="navbar-item " href="/documentation/overview/start/">
             Overview
                 </a>
-                <a className="navbar-item " href="http://bulma.io/documentation/modifiers/syntax/">
-            Modifiers
-                </a>
-                <a className="navbar-item " href="http://bulma.io/documentation/grid/columns/">
-            Grid
-                </a>
-                <a className="navbar-item " href="http://bulma.io/documentation/form/general/">
-            Form
-                </a>
-                <a className="navbar-item " href="http://bulma.io/documentation/elements/box/">
-            Elements
-                </a>
-
                 <a className="navbar-item is-active" href="http://bulma.io/documentation/components/breadcrumb/">
               Components
                 </a>
-
-                <a className="navbar-item " href="http://bulma.io/documentation/layout/container/">
-            Layout
-                </a>
                 <hr className="navbar-divider" />
                 <div className="navbar-item">
-                  <div>version <p className="has-text-info is-size-6-desktop">0.4.3</p></div>
+                  <div>version <p className="has-text-info is-size-6-desktop">0.1.0</p></div>
                 </div>
-              </div>
-            </div>
-            <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link " href="http://bulma.io/blog/">
-          Blog
-              </a>
-              <div id="blogDropdown" className="navbar-dropdown is-boxed" data-style="width: 18rem;">
-
-                <a className="navbar-item" href="/2017/03/10/new-field-element/">
-                  <div className="navbar-content">
-                    <p>
-                      <small className="has-text-info">10 Mar 2017</small>
-                    </p>
-                    <p>New field element (for better controls)</p>
-                  </div>
-                </a>
-
-                <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
-                  <div className="navbar-content">
-                    <p>
-                      <small className="has-text-info">11 Apr 2016</small>
-                    </p>
-                    <p>Metro UI CSS grid with Bulma tiles</p>
-                  </div>
-                </a>
-
-                <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
-                  <div className="navbar-content">
-                    <p>
-                      <small className="has-text-info">09 Feb 2016</small>
-                    </p>
-                    <p>Blog launched, new responsive columns, new helpers</p>
-                  </div>
-                </a>
-
-                <a className="navbar-item" href="http://bulma.io/blog/">
-            More posts
-                </a>
-                <hr className="navbar-divider" />
-                <div className="navbar-item">
-                  <div className="navbar-content">
-                    <div className="level is-mobile">
-                      <div className="level-left">
-                        <div className="level-item">
-                          <strong>Stay up to date!</strong>
-                        </div>
-                      </div>
-                      <div className="level-right">
-                        <div className="level-item">
-                          <a className="button is-rss is-small" href="http://bulma.io/atom.xml">
-                            <span className="icon is-small">
-                              <i className="fa fa-rss" />
-                            </span>
-                            <span>Subscribe</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="navbar-item has-dropdown is-hoverable">
-              <div className="navbar-link">
-          More
-              </div>
-              <div id="moreDropdown" className="navbar-dropdown is-boxed">
-                <a className="navbar-item " href="http://bulma.io/extensions/">
-                  <div className="level is-mobile">
-                    <div className="level-left">
-                      <div className="level-item">
-                        <p>
-                          <strong>Extensions</strong>
-                          <br />
-                          <small>Side projects to enhance Bulma</small>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="level-right">
-                      <div className="level-item">
-                        <span className="icon has-text-info">
-                          <i className="fa fa-plug" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </a>
               </div>
             </div>
           </div>
 
           <div className="navbar-end">
-            <a className="navbar-item" href="https://github.com/jgthms/bulma">
-        Github
-            </a>
-            <a className="navbar-item" href="https://twitter.com/jgthms">
-        Twitter
-            </a>
             <div className="navbar-item">
-              <div className="field is-grouped">
-                <p className="control">
-                  <a
-                    id="twitter"
-                    className="button"
-                    data-social-network="Twitter"
-                    data-social-action="tweet"
-                    data-social-target="http://bulma.io"
-                    href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&url=http://bulma.io&via=jgthms"
-                  >
-                    <span className="icon">
-                      <i className="fa fa-twitter" />
-                    </span>
-                    <span>Tweet</span>
-                  </a>
-                </p>
-                <p className="control">
-                  <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
-                    <span className="icon">
-                      <i className="fa fa-download" />
-                    </span>
-                    <span>Download</span>
-                  </a>
-                </p>
-              </div>
+              {currentUser ? this.renderLoggedIn(currentUser) : this.renderLoggedOut()}
             </div>
           </div>
         </div>
-</nav>
+      </nav>
     );
   }
 }
 
-export default NavHeader;
+NavHeader.defaultProps = {
+  currentUser: null,
+};
+
+NavHeader.propTypes = {
+  pathname: PropTypes.string.isRequired,
+  currentUser: PropTypes.shape({
+    screenName: PropTypes.string.isRequired,
+  }),
+  signinUser: PropTypes.func.isRequired,
+  createUser: PropTypes.func.isRequired,
+};
+
+export const currentUser = gql`
+  query currentUser {
+    user {
+      screenName
+    }
+  }
+`;
+
+
+const createUser = gql`
+  mutation createUser (
+    $idToken: String!
+    $screenName: String!
+  ) {
+    createUser (
+      authProvider: {
+        auth0: {
+          idToken: $idToken
+        }
+      }
+      screenName: $screenName
+    ) {
+      id
+    }
+  }
+`;
+
+const signinUser = gql`
+  mutation signinUser (
+    $idToken: String!
+  ) {
+    signinUser (
+      auth0: {
+        idToken: $idToken
+      }
+    ) {
+      token
+    }
+  }
+`;
+
+const withSigninMutation = graphql(
+  signinUser, { name: 'signinUser' },
+);
+
+const withCreateMutation = graphql(
+  createUser, { name: 'createUser' },
+);
+
+const withUser = graphql(currentUser, {
+  props: ({ data }) => ({
+    currentUser: data.user,
+  }),
+});
+
+export default withUser(withSigninMutation(withCreateMutation(NavHeader)));

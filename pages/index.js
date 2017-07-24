@@ -13,7 +13,7 @@ const AppPage = props => (
     <Helmet>
       <title>ChewLounge Timesheet</title>
     </Helmet>
-    <NavHeader />
+    <NavHeader pathname={props.url.pathname} />
     <Header pathname={props.url.pathname} />
     <Submit />
     <PostListContainer />
