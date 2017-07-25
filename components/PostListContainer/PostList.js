@@ -3,7 +3,7 @@ import ShowMore from '../ShowMore';
 import Loading from '../Loading';
 
 
-function PostList({ data, loadMorePosts }) { // eslint-disable-line react/prop-types
+const PostList = ({ data, loadMorePosts }) => { // eslint-disable-line react/prop-types
   const { allPosts, loading, _allPostsMeta } = data;
 
   if (!allPosts || !allPosts.length) {

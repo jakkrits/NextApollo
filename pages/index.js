@@ -6,6 +6,7 @@ import PostListContainer from '../components/PostListContainer';
 import Footer from '../components/Footer';
 import withData from '../lib/withData';
 import pagePropTypes from '../lib/pagePropTypes';
+import Info from '../components/Info';
 
 const AppPage = props => (
   <App>
@@ -13,8 +14,9 @@ const AppPage = props => (
       <title>ChewLounge Timesheet</title>
     </Helmet>
     <NavHeader pathname={props.url.pathname} />
-    <Submit />
+    <Info />
     <PostListContainer />
+    <Submit />
     <Footer />
   </App>
 );
