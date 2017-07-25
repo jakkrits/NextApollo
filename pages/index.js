@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import withData from '../lib/withData';
 import pagePropTypes from '../lib/pagePropTypes';
 import Info from '../components/Info';
+import Timetable from '../components/TimesheetContainer';
 
 const AppPage = props => (
   <App>
@@ -15,6 +16,7 @@ const AppPage = props => (
     </Helmet>
     <NavHeader pathname={props.url.pathname} />
     <Info />
+    <Timetable />
     <PostListContainer />
     <Submit />
     <Footer />
