@@ -12,6 +12,13 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
         redirectUrl: `${location.origin}/login?r=${this.props.pathname}`,
         responseType: 'token',
       },
+      allowSignUp: false,
+      theme: {
+        logo: 'https://image.flaticon.com/icons/svg/325/325559.svg',
+      },
+      languageDictionary: {
+        title: 'ชิวเล้าจ์ล็อกอิน',
+      },
     });
     this.lock = lock;
 
@@ -138,28 +145,34 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
           <div className="navbar-start">
             <Link prefetch href="/">
               <a className={pathname === '/' && 'nav-item is-active' ? 'nav-item  is-active' : 'nav-item'}>
-        Home
+        หน้าแรก
               </a>
             </Link>
 
             <Link prefetch href="/about">
-              <a className={pathname === '/about' && 'nav-item is-active' ? 'nav-item  is-active' : 'nav-item'}>About</a>
+              <a className={pathname === '/about' && 'nav-item is-active' ? 'nav-item  is-active' : 'nav-item'}>วิธีใช้งาน</a>
             </Link>
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link  is-active" href="/">
-          Employees
+              พนักงาน
               </a>
               <div className="navbar-dropdown is-boxed">
-                <a className="navbar-item " href="/documentation/overview/start/">
-            Overview
+                <a className="navbar-item " href="/employees">
+                ทั้งหมด
                 </a>
-                <a className="navbar-item is-active" href="http://bulma.io/documentation/components/breadcrumb/">
-              Components
+                <a className="navbar-item is-active" href="/allemployees">
+                เสิร์ฟ
+                </a>
+                <a className="navbar-item " href="/employees">
+                ล้างจาน
+                </a>
+                <a className="navbar-item " href="/employees">
+                แคชเชียร์
                 </a>
                 <hr className="navbar-divider" />
                 <div className="navbar-item">
-                  <div>version <p className="has-text-info is-size-6-desktop">0.1.0</p></div>
+                  <div>พาร์ทไทม์ <p className="has-text-info is-size-6-desktop">ฟูลไทม์</p></div>
                 </div>
               </div>
             </div>

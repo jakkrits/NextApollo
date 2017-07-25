@@ -1,5 +1,6 @@
 import App from '../components/App';
 import NavHeader from '../components/NavHeader';
+import Footer from '../components/Footer';
 import withData from '../lib/withData';
 
 import pagePropTypes from '../lib/pagePropTypes';
@@ -24,6 +25,7 @@ const AboutPage = props => (
         </p>
       </article>
     </section>
+    <Footer />
   </App>
 );
 
