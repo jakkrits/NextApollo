@@ -1,3 +1,5 @@
+import Rating from 'react-rating';
+
 export default () => (<div className="container">
   <table className="table is-narrow">
     <thead>
@@ -79,7 +81,12 @@ export default () => (<div className="container">
             </a>
           </p>
         </td>
-        <td>10</td>
+        <td>
+          <Rating
+            empty="fa fa-star-o"
+            full="fa fa-star"
+          />
+        </td>
         <td>ทำงานดีมาก</td>
       </tr>
       <tr>
@@ -133,7 +140,12 @@ export default () => (<div className="container">
             </a>
           </p>
         </td>
-        <td>8</td>
+        <td>
+          <Rating
+            empty="fa fa-star-o"
+            full="fa fa-star"
+          />
+        </td>
         <td>เหมือนจะขาดบ่อย</td>
       </tr>
       <tr>
@@ -200,7 +212,12 @@ export default () => (<div className="container">
             </a>
           </p>
         </td>
-        <td>10</td>
+        <td>
+          <Rating
+            empty="fa fa-star-o"
+            full="fa fa-star"
+          />
+        </td>
         <td>ควรไล่ออก</td>
       </tr>
       <tr>
@@ -255,7 +272,12 @@ export default () => (<div className="container">
             </a>
           </p>
         </td>
-        <td>10</td>
+        <td>
+          <Rating
+            empty="fa fa-star-o"
+            full="fa fa-star"
+          />
+        </td>
         <td>ชอบหนีไปดูดหรี่</td>
       </tr>
       <tr className="is-selected">
@@ -310,7 +332,12 @@ export default () => (<div className="container">
             </a>
           </p>
         </td>
-        <td>4</td>
+        <td>
+          <Rating
+            empty="fa fa-star-o"
+            full="fa fa-star"
+          />
+        </td>
         <td>กำลังจะไปบวช</td>
       </tr>
       <tr>
@@ -365,7 +392,12 @@ export default () => (<div className="container">
             </a>
           </p>
         </td>
-        <td>3</td>
+        <td>
+          <Rating
+            empty="fa fa-star-o"
+            full="fa fa-star"
+          />
+        </td>
         <td>แอบแดกของ</td>
       </tr>
       <tr>
@@ -432,7 +464,12 @@ export default () => (<div className="container">
             </a>
           </p>
         </td>
-        <td>10</td>
+        <td>
+          <Rating
+            empty="fa fa-star-o"
+            full="fa fa-star"
+          />
+        </td>
         <td>ทำงานดีมาก</td>
       </tr>
       <tr>
@@ -486,7 +523,12 @@ export default () => (<div className="container">
             </a>
           </p>
         </td>
-        <td>8</td>
+        <td>
+          <Rating
+            empty="fa fa-star-o"
+            full="fa fa-star"
+          />
+        </td>
         <td>เหมือนจะขาดบ่อย</td>
       </tr>
     </tbody><style jsx>{`
