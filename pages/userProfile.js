@@ -1,7 +1,20 @@
-import { Component } from 'react';
+import NavHeader from '../components/NavHeader';
+import App from '../components/App';
+import Footer from '../components/Footer';
+import withData from '../lib/withData';
+import pagePropTypes from '../lib/pagePropTypes';
 
-export default class UserProfile extends Component { //eslint-disable-line 
-  render() {
-    return <h1>UserProfile</h1>;
-  }
-}
+const UserProfile = props => (
+  <App>
+    <NavHeader pathname={props.url.pathname} />
+    <div className="container">
+      <h1>User Profile Goes Here</h1>
+    </div>
+    <Footer />
+  </App>
+);
+
+UserProfile.propTypes = pagePropTypes;
+
+
+export default withData(UserProfile);

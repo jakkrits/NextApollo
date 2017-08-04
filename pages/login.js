@@ -2,6 +2,7 @@ import { Component } from 'react';
 import withData from '../lib/withData';
 import App from '../components/App';
 import NavHeader from '../components/NavHeader';
+import Footer from '../components/Footer';
 import pagePropTypes from '../lib/pagePropTypes';
 import Loading from '../components/Loading';
 
@@ -17,6 +18,7 @@ class LoginPage extends Component { // eslint-disable-line react/prefer-stateles
       <App>
         <NavHeader pathname={url.pathname} />
         <Loading />
+        <Footer />
       </App>
     );
   }
