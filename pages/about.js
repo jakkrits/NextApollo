@@ -8,7 +8,7 @@ import pagePropTypes from '../lib/pagePropTypes';
 const AboutPage = props => (
   <App>
     <NavHeader pathname={props.url.pathname} />
-    <div className="box">
+    <div className="container">
       <section className="section is-small">
         <article>
           <h1>ชิวเล๊าจ์ เพย์โรล ซิสเท็ม</h1>

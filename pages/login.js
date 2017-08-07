@@ -17,7 +17,9 @@ class LoginPage extends Component { // eslint-disable-line react/prefer-stateles
     return (
       <App>
         <NavHeader pathname={url.pathname} />
-        <Loading />
+        <div className="container">
+          <Loading />
+        </div>
         <Footer />
       </App>
     );
