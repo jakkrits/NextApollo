@@ -16,7 +16,7 @@
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "graphql": "^0.10.5",
-    "next": "^2.4.9",
+    "next": "^3.0.3",
     "path-match": "^1.2.4",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
