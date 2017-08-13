@@ -8,8 +8,14 @@ import withData from '../lib/withData';
 import pagePropTypes from '../lib/pagePropTypes';
 
 class UserProfile extends Component { // eslint-disable-line
+  checkUserDocument = () => console.log(this.props.data.user.documents.length);
+  checkFirstNameAndLastName = () => console.log('checking names if no names renders textfields');
+  renderBranchOption = () => console.log('render branch');
+  renderForm = () => <h1>FORM HERE</h1>
+
   render() {
-    console.log(this.props);
+    console.error(this.props.data.user);
+    this.checkUserDocument();
     return (
       <App>
         <NavHeader pathname={this.props.url.pathname} />
@@ -18,29 +24,29 @@ class UserProfile extends Component { // eslint-disable-line
             <div className="column is-one-quarter" />
             <div className="column is-half is-narrow">
               <div className="card">
-                <div className="card-image">
-                  <figure className="image is-4by3">
-                    <img className="http://bulma.io/images/placeholders/1280x960.png" alt="user-pic" />
+                <div className="card-image" style={{ width: '50%', margin: 'auto', padding: '8px', backgroundColor: '#00D1B2' }}>
+                  <figure className="image is-256x256">
+                    <img src={this.props.data.user.picture || 'https://image.flaticon.com/icons/svg/179/179959.svg'} alt="user-pic" />
                   </figure>
                 </div>
+                {this.renderForm()}
                 <div className="card-content">
                   <div className="media">
                     <div className="media-left">
                       <figure className="image is-48x48">
-                        <img src="http://bulma.io/images/placeholders/96x96.png" alt="small-user-pic" />
+                        <img src={this.props.data.user.picture} alt="small-user-pic" />
                       </figure>
                     </div>
                     <div className="media-content">
-                      <p className="title is-4">John Smith</p>
-                      <p className="subtitle is-6">@johnsmith</p>
+                      <p className="title is-4">{this.props.data.user.firstName} {this.props.data.user.lastName}</p>
+                      <p className="subtitle is-6">{this.props.data.user.nickName}</p>
                     </div>
                   </div>
-                  <div className="column is-one-quarter" />
                   <div className="content">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       Phasellus nec iaculis mauris. <a>@bulmaio</a>.
                     <a>#css</a> <a>#responsive</a>
-                    <br />
+                    <hr />
                     <small>11:09 PM - 1 Jan 2016</small>
                   </div>
                   <div>
@@ -50,7 +56,7 @@ class UserProfile extends Component { // eslint-disable-line
                         <textarea className="textarea" placeholder="status" id="status" />
                       </div>
                     </div>
-                    <div className="field is-grouped">
+                    <div className="field is-grouped is-grouped-centered">
                       <div className="control">
                         <button className="button is-primary">Submit</button>
                       </div>
@@ -62,6 +68,7 @@ class UserProfile extends Component { // eslint-disable-line
                 </div>
               </div>
             </div>
+            <div className="column is-one-quarter" />
           </div>
         </div>
         <Footer />
@@ -76,6 +83,12 @@ const userQuery = gql`
     query currentUser {
       user {
         nickName       
+        picture
+        firstName
+        lastName
+        documents {
+          branch
+        }
       }
     }
 `;

@@ -41,11 +41,13 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
 
   async signinOrCreateUser(idToken, profile) {
     const nickName = profile.given_name || profile.name || profile.nickname;
+    const picture = profile.picture;
 
     try {
       await this.props.createUser({ variables: {
         idToken,
         nickName,
+        picture,
       } });
     } catch (err) {
       console.error('createUser fail', err);
@@ -212,6 +214,7 @@ const createUser = gql`
   mutation createUser (
     $idToken: String!
     $nickName: String!
+    $picture: String!
   ) {
     createUser (
       authProvider: {
@@ -220,6 +223,7 @@ const createUser = gql`
         }
       }
         nickName: $nickName
+        picture: $picture
     ) {
       id
     }
