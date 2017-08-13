@@ -6,6 +6,7 @@ import App from '../components/App';
 import Footer from '../components/Footer';
 import withData from '../lib/withData';
 import pagePropTypes from '../lib/pagePropTypes';
+import Loading from '../components/Loading';
 
 class UserProfile extends Component { // eslint-disable-line
   checkUserDocument = () => console.log(this.props.data.user.documents.length);
@@ -14,7 +15,9 @@ class UserProfile extends Component { // eslint-disable-line
   renderForm = () => <h1>FORM HERE</h1>
 
   render() {
-    console.error(this.props.data.user);
+    if(this.props.data.loading) {
+      return <Loading />;
+    }
     this.checkUserDocument();
     return (
       <App>
