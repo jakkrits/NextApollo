@@ -75,8 +75,7 @@ UserProfile.propTypes = pagePropTypes;
 const userQuery = gql`
     query currentUser {
       user {
-        screenName
-        name
+        nickName       
       }
     }
 `;
