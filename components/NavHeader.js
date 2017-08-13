@@ -23,13 +23,12 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
     this.lock = lock;
 
     lock.on('authenticated', (result) => {
-      console.log('authenticated', result);
       lock.getUserInfo(result.accessToken, (error, profile) => {
         if (error) {
           console.error('getUserInfo error', error);
           return;
         }
-
+        console.error(JSON.stringify(profile, null, 4));
         this.signinOrCreateUser(result.idToken, profile);
       });
     });
@@ -37,18 +36,16 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
 
   triggerLogin = (e) => {
     e.preventDefault();
-
     this.lock.show();
   };
 
   async signinOrCreateUser(idToken, profile) {
-    const screenName = profile.screen_name || profile.firstName || profile.nickname;
+    const nickName = profile.given_name || profile.name || profile.nickname;
 
-    console.log('signinOrCreateUser', { idToken, profile, name });
     try {
       await this.props.createUser({ variables: {
         idToken,
-        screenName,
+        nickName,
       } });
     } catch (err) {
       console.error('createUser fail', err);
@@ -80,7 +77,7 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
               <span className="icon">
                 <i className="fa fa-user-circle" />
               </span>
-              <span>{currentUser.screenName}</span>
+              <span>{currentUser.nickName}</span>
             </a>
           </Link>
         </p>
@@ -196,7 +193,7 @@ NavHeader.defaultProps = {
 NavHeader.propTypes = {
   pathname: PropTypes.string.isRequired,
   currentUser: PropTypes.shape({
-    screenName: PropTypes.string.isRequired,
+    nickName: PropTypes.string.isRequired,
   }),
   signinUser: PropTypes.func.isRequired,
   createUser: PropTypes.func.isRequired,
@@ -205,7 +202,7 @@ NavHeader.propTypes = {
 export const currentUser = gql`
   query currentUser {
     user {
-      screenName
+      nickName
     }
   }
 `;
@@ -214,7 +211,7 @@ export const currentUser = gql`
 const createUser = gql`
   mutation createUser (
     $idToken: String!
-    $screenName: String!
+    $nickName: String!
   ) {
     createUser (
       authProvider: {
@@ -222,7 +219,7 @@ const createUser = gql`
           idToken: $idToken
         }
       }
-      screenName: $screenName
+        nickName: $nickName
     ) {
       id
     }
