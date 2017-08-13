@@ -15,7 +15,7 @@ class UserProfile extends Component { // eslint-disable-line
   renderForm = () => <h1>FORM HERE</h1>
 
   render() {
-    if(this.props.data.loading) {
+    if (this.props.data.loading) {
       return <Loading />;
     }
     this.checkUserDocument();
