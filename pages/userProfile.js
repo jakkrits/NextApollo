@@ -27,7 +27,7 @@ class UserProfile extends Component { // eslint-disable-line
             <div className="column is-one-quarter" />
             <div className="column is-half is-narrow">
               <div className="card">
-                <div className="card-image" style={{ width: '50%', margin: 'auto', padding: '8px', backgroundColor: '#00D1B2' }}>
+                <div className="card-image" style={{ width: '50%', margin: 'auto', padding: '8px' }}>
                   <figure className="image is-256x256">
                     <img src={this.props.data.user.picture || 'https://image.flaticon.com/icons/svg/179/179959.svg'} alt="user-pic" />
                   </figure>
