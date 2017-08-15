@@ -1,3 +1,4 @@
+import React from 'react';
 import Helmet from 'react-helmet';
 import App from '../components/App';
 import NavHeader from '../components/NavHeader';
@@ -20,7 +21,22 @@ const AppPage = props => (
   </App>
 );
 
-AppPage.propTypes = pagePropTypes;
+/*
+class AppPage extends React.Component { // eslint-disable-line
+  render() {
+    return (<App>
+      <Helmet>
+        <title>ChewLounge Timesheet</title>
+      </Helmet>
+      <NavHeader pathname={this.props.url.pathname} />
+      <Info />
+      <Timetable />
+      <Footer />
+    </App>);
+  }
+}
+*/
 
+AppPage.propTypes = pagePropTypes;
 
 export default withData(AppPage);

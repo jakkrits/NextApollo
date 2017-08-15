@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql, gql } from 'react-apollo';
+import Router from 'next/router';
 // import Dropzone from 'react-dropzone';
 import NavHeader from '../components/NavHeader';
 import App from '../components/App';
@@ -9,16 +10,20 @@ import pagePropTypes from '../lib/pagePropTypes';
 import Loading from '../components/Loading';
 
 class UserProfile extends Component { // eslint-disable-line
-  checkUserDocument = () => console.log(this.props.data.user.documents.length);
-  checkFirstNameAndLastName = () => console.log('checking names if no names renders textfields');
-  renderBranchOption = () => console.log('render branch');
-  renderForm = () => <h1>FORM HERE</h1>
+  // checkFirstNameAndLastName = () => console.log('checking names if no names renders textfields');
+  // renderBranchOption = () => console.log('render branch');
 
+  componentWillReceiveProps() {
+    if (this.props.data.user === null) {
+      Router.push('/');
+    }
+  }
+  renderForm = () => <h1>FORM HERE</h1>;
   render() {
     if (this.props.data.loading) {
       return <Loading />;
     }
-    this.checkUserDocument();
+
     return (
       <App>
         <NavHeader pathname={this.props.url.pathname} />
@@ -89,7 +94,7 @@ const userQuery = gql`
         picture
         firstName
         lastName
-        documents {
+        document {
           branch
         }
       }
@@ -98,5 +103,3 @@ const userQuery = gql`
 
 const UserProfileWithUserQuery = graphql(userQuery, { options: { fetchPolicy: 'network-only' } });
 export default withData(UserProfileWithUserQuery(UserProfile));
-
-// export default withData(UserProfile);
