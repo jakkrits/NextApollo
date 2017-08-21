@@ -1,5 +1,8 @@
 import { gql, graphql } from 'react-apollo';
 import Link from 'next/link';
+import NProgress from 'nprogress';
+import Router from 'next/router';
+import Head from 'next/head';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Auth0Lock from 'auth0-lock';
@@ -123,6 +126,9 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
     const { pathname, currentUser } = this.props; //eslint-disable-line
     return (
       <nav className="navbar is-transparent">
+        <Head>
+          <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
+        </Head>
         <div className="navbar-brand">
           <a className="navbar-item" href="/">
             <img src="/static/ChewloungeLogo.png" alt="Logo" width="112" height="28" />
@@ -156,7 +162,7 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
           <div className="navbar-start">
             <Link prefetch href="/">
               <a className={pathname === '/' && 'nav-item is-active' ? 'nav-item  is-active' : 'nav-item'}>
-        หน้าแรก
+                หน้าแรก
               </a>
             </Link>
 
@@ -166,20 +172,20 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
 
             <div className="navbar-item has-dropdown is-hoverable">
               <a className="navbar-link  is-active" href="/">
-              พนักงาน
+                พนักงาน
               </a>
               <div className="navbar-dropdown is-boxed">
                 <a className="navbar-item " href="/employees">
-                ทั้งหมด
+                  ทั้งหมด
                 </a>
                 <a className="navbar-item is-active" href="/allemployees">
-                เสิร์ฟ
+                  เสิร์ฟ
                 </a>
                 <a className="navbar-item " href="/employees">
-                ล้างจาน
+                  ล้างจาน
                 </a>
                 <a className="navbar-item " href="/employees">
-                แคชเชียร์
+                  แคชเชียร์
                 </a>
                 <hr className="navbar-divider" />
                 <div className="navbar-item">
