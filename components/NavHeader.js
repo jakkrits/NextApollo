@@ -6,8 +6,6 @@ import Head from 'next/head';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Auth0Lock from 'auth0-lock';
-import NProgress from 'nprogress';
-import Router from 'next/router';
 import { setAuthToken } from '../lib/authTokens';
 
 class NavHeader extends Component { // eslint-disable-line react/prefer-stateless-function
