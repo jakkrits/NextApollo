@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 import { graphql, gql } from 'react-apollo';
-import Router from 'next/router';
-// import Dropzone from 'react-dropzone';
 import NavHeader from '../components/NavHeader';
 import App from '../components/App';
 import Footer from '../components/Footer';
 import withData from '../lib/withData';
 import pagePropTypes from '../lib/pagePropTypes';
 import Loading from '../components/Loading';
+import checkLoggedIn from '../lib/checkLoggedIn';
+import redirect from '../lib/redirect';
 
 class UserProfile extends Component { // eslint-disable-line
   // checkFirstNameAndLastName = () => console.log('checking names if no names renders textfields');
   // renderBranchOption = () => console.log('render branch');
-
-  componentWillReceiveProps() {
-    if (this.props.data.user === null) {
-      Router.push('/');
+  /*
+  static async getInitialProps(context, apolloClient) {
+    const { loggedInUser } = await checkLoggedIn(context, apolloClient);
+    if (!loggedInUser) {
+      // if not signed in redirect to homepage
+      // redirect(context, '/');
+      console.log(apolloClient);
+      console.log("######################");
+      console.log(checkLoggedIn(context, apolloClient));
     }
+    return { loggedInUser };
   }
+*/
+
   renderForm = () => <h1>FORM HERE</h1>;
+
   render() {
     if (this.props.data.loading) {
       return <Loading />;
@@ -93,7 +102,8 @@ const userQuery = gql`
         nickName       
         picture
         firstName
-        lastName
+        lastName 
+        role
         document {
           branch
         }
