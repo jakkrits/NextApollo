@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Auth0Lock from 'auth0-lock';
+import NProgress from 'nprogress';
+import Router from 'next/router';
 import { setAuthToken } from '../lib/authTokens';
 
 class NavHeader extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -13,6 +15,9 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
         responseType: 'token',
       },
       allowSignUp: false,
+      allowedConnections: [
+        'facebook', 'google-oauth2',
+      ],
       theme: {
         logo: 'https://image.flaticon.com/icons/svg/325/325559.svg',
       },
@@ -32,6 +37,13 @@ class NavHeader extends Component { // eslint-disable-line react/prefer-stateles
         this.signinOrCreateUser(result.idToken, profile);
       });
     });
+
+    Router.onRouteChangeStart = (url) => {
+      console.log(`Loading: ${url}`);
+      NProgress.start();
+    };
+    Router.onRouteChangeComplete = () => NProgress.done();
+    Router.onRouteChangeError = () => NProgress.done();
   }
 
   triggerLogin = (e) => {
